@@ -1,0 +1,201 @@
+{
+  "manifestVersion": "3.2",
+  "admin": {
+    "address": "0xB2c566eF5398E9D1B5770DC0FBC2721074E73845",
+    "txHash": "0xcecb99ab95148852ec15f8f43e16b3f17837a3215093f602c12075f02fd23e37"
+  },
+  "proxies": [
+    {
+      "address": "0xf8293399422f9A87eEDAE91b26e26225D26Cd05B",
+      "txHash": "0x7885d19025220ee29b7505543d13c988e9596b1ff5e21343e9132474485fe4fe",
+      "kind": "transparent"
+    }
+  ],
+  "impls": {
+    "db57141de28aa5829f4a57fd60f01147ed614b60eb62243b0fa838f357d9bae3": {
+      "address": "0x96d849549fD76c8b0EAFA6776999Fc0b1B27B780",
+      "txHash": "0x9e7be87b9813fba888a104540122b75cbbc278355cfb8d415bf5d1a077736fa0",
+      "layout": {
+        "storage": [
+          {
+            "label": "_initialized",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint8",
+            "contract": "Initializable",
+            "src": "@openzeppelin\\contracts-upgradeable\\proxy\\utils\\Initializable.sol:62",
+            "retypedFrom": "bool"
+          },
+          {
+            "label": "_initializing",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_bool",
+            "contract": "Initializable",
+            "src": "@openzeppelin\\contracts-upgradeable\\proxy\\utils\\Initializable.sol:67"
+          },
+          {
+            "label": "_status",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_uint256",
+            "contract": "ReentrancyGuardUpgradeable",
+            "src": "@openzeppelin\\contracts-upgradeable\\security\\ReentrancyGuardUpgradeable.sol:38"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "ReentrancyGuardUpgradeable",
+            "src": "@openzeppelin\\contracts-upgradeable\\security\\ReentrancyGuardUpgradeable.sol:74"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "51",
+            "type": "t_array(t_uint256)50_storage",
+            "contract": "ContextUpgradeable",
+            "src": "@openzeppelin\\contracts-upgradeable\\utils\\ContextUpgradeable.sol:36"
+          },
+          {
+            "label": "_owner",
+            "offset": 0,
+            "slot": "101",
+            "type": "t_address",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin\\contracts-upgradeable\\access\\OwnableUpgradeable.sol:22"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "102",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "OwnableUpgradeable",
+            "src": "@openzeppelin\\contracts-upgradeable\\access\\OwnableUpgradeable.sol:87"
+          },
+          {
+            "label": "_paused",
+            "offset": 0,
+            "slot": "151",
+            "type": "t_bool",
+            "contract": "PausableUpgradeable",
+            "src": "@openzeppelin\\contracts-upgradeable\\security\\PausableUpgradeable.sol:29"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "152",
+            "type": "t_array(t_uint256)49_storage",
+            "contract": "PausableUpgradeable",
+            "src": "@openzeppelin\\contracts-upgradeable\\security\\PausableUpgradeable.sol:102"
+          },
+          {
+            "label": "expiration",
+            "offset": 0,
+            "slot": "201",
+            "type": "t_uint256",
+            "contract": "LockBox",
+            "src": "contracts\\LockBox.sol:21"
+          },
+          {
+            "label": "token",
+            "offset": 0,
+            "slot": "202",
+            "type": "t_contract(IERC20Upgradeable)513",
+            "contract": "LockBox",
+            "src": "contracts\\LockBox.sol:22"
+          },
+          {
+            "label": "rewards",
+            "offset": 0,
+            "slot": "203",
+            "type": "t_mapping(t_address,t_array(t_struct(RewardInfo)1372_storage)dyn_storage)",
+            "contract": "LockBox",
+            "src": "contracts\\LockBox.sol:31"
+          },
+          {
+            "label": "recipientList",
+            "offset": 0,
+            "slot": "204",
+            "type": "t_array(t_address)dyn_storage",
+            "contract": "LockBox",
+            "src": "contracts\\LockBox.sol:32"
+          }
+        ],
+        "types": {
+          "t_address": {
+            "label": "address",
+            "numberOfBytes": "20"
+          },
+          "t_array(t_address)dyn_storage": {
+            "label": "address[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_struct(RewardInfo)1372_storage)dyn_storage": {
+            "label": "struct LockBox.RewardInfo[]",
+            "numberOfBytes": "32"
+          },
+          "t_array(t_uint256)49_storage": {
+            "label": "uint256[49]",
+            "numberOfBytes": "1568"
+          },
+          "t_array(t_uint256)50_storage": {
+            "label": "uint256[50]",
+            "numberOfBytes": "1600"
+          },
+          "t_bool": {
+            "label": "bool",
+            "numberOfBytes": "1"
+          },
+          "t_contract(IERC20Upgradeable)513": {
+            "label": "contract IERC20Upgradeable",
+            "numberOfBytes": "20"
+          },
+          "t_mapping(t_address,t_array(t_struct(RewardInfo)1372_storage)dyn_storage)": {
+            "label": "mapping(address => struct LockBox.RewardInfo[])",
+            "numberOfBytes": "32"
+          },
+          "t_struct(RewardInfo)1372_storage": {
+            "label": "struct LockBox.RewardInfo",
+            "members": [
+              {
+                "label": "amount",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "0"
+              },
+              {
+                "label": "rewardId",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "1"
+              },
+              {
+                "label": "startedAt",
+                "type": "t_uint256",
+                "offset": 0,
+                "slot": "2"
+              },
+              {
+                "label": "released",
+                "type": "t_bool",
+                "offset": 0,
+                "slot": "3"
+              }
+            ],
+            "numberOfBytes": "128"
+          },
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          },
+          "t_uint8": {
+            "label": "uint8",
+            "numberOfBytes": "1"
+          }
+        }
+      }
+    }
+  }
+}
