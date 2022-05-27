@@ -47,6 +47,8 @@ contract TheButton is
      * @dev claim function
      */
     function claim() external payable whenNotPaused callerIsUser nonReentrant {
+        require(startTime <= block.timestamp, "not started yet");
+
         refundIfOver(CLAIMABLE_AMOUNT);
         // update winner
         winner = payable(msg.sender);
