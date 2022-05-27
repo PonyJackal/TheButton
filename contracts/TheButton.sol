@@ -70,10 +70,10 @@ contract TheButton is
     }
 
     /**
-     * @notice to call this function, user must send 1 ETH,
-     * @dev claim function
+     * @notice owner function to withdraw current funds to the current winner
      */
     function withdrawToWinner() external onlyOwner {
+        // no need to check if winner is set or not
         winner.transfer(address(this).balance);
     }
 
