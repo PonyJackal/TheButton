@@ -75,6 +75,7 @@ contract TheButton is
     function withdrawToWinner() external onlyOwner {
         // no need to check if winner is set or not
         winner.transfer(address(this).balance);
+        startTime = block.timestamp;
     }
 
     // INTERNAL METHODS
