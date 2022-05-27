@@ -38,7 +38,6 @@ contract TheButton is
         __Pausable_init();
 
         require(_startTime > block.timestamp, "invalid start time");
-
         startTime = _startTime;
     }
 
@@ -48,24 +47,26 @@ contract TheButton is
      */
     function claim() external payable whenNotPaused callerIsUser nonReentrant {
         require(startTime <= block.timestamp, "not started yet");
-
         refundIfOver(CLAIMABLE_AMOUNT);
-        // update winner
-        winner = payable(msg.sender);
+
+        address payable _winner = winner;
         // Check if time is expired
         if (block.timestamp > startTime + EXPIRATION) {
             // reset start time
             startTime = block.timestamp;
-            // transfer all ETH to the winner
-            uint256 balance = address(this).balance;
-            winner.transfer(balance);
+            // check if winner is set
+            // no need to revert if winner is not set yet
+            // we just need to start the auction from there
+            if (_winner != address(0)) {
+                // transfer all ETH to the winner
+                uint256 balance = address(this).balance;
+                _winner.transfer(balance);
 
-            emit RewardClaimed(winner, balance);
+                emit RewardClaimed(_winner, balance);
+            }
         }
-    }
-
-    function withdrawToWinner() external onlyOwner {
-        winner.transfer(address(this).balance);
+        // update winner
+        winner = payable(msg.sender);
     }
 
     // INTERNAL METHODS
