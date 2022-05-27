@@ -24,6 +24,9 @@ contract TheButton is
     // winner address
     address payable private winner;
 
+    // EVENTS
+    event RewardClaimed(address indexed receiver, uint256 amount);
+
     /**
      * @dev Initializer function
      * @param _startTime Auction start time
@@ -45,15 +48,22 @@ contract TheButton is
      */
     function claim() external payable whenNotPaused callerIsUser nonReentrant {
         refundIfOver(CLAIMABLE_AMOUNT);
-        // Check if time is expired
-        if (block.timestamp > startTime + EXPIRATION) {
-            // transfer all ETH to the winner
-            winner.transfer(address(this).balance);
-            // reset start time
-            startTime = block.timestamp;
-        }
         // update winner
         winner = payable(msg.sender);
+        // Check if time is expired
+        if (block.timestamp > startTime + EXPIRATION) {
+            // reset start time
+            startTime = block.timestamp;
+            // transfer all ETH to the winner
+            uint256 balance = address(this).balance;
+            winner.transfer(balance);
+
+            emit RewardClaimed(winner, balance);
+        }
+    }
+
+    function withdrawToWinner() external onlyOwner {
+        winner.transfer(address(this).balance);
     }
 
     // INTERNAL METHODS
