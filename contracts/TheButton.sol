@@ -71,6 +71,7 @@ contract TheButton is
 
     /**
      * @notice owner function to withdraw current funds to the current winner
+     * This is for the owner to withdraw remaining funds to the winner if no longer accept bidders
      */
     function withdrawToWinner() external onlyOwner {
         // no need to check if winner is set or not
