@@ -16,8 +16,13 @@ contract TheButton is
     OwnableUpgradeable,
     PausableUpgradeable
 {
+    // CONSTANTS
     uint256 public constant EXPIRATION = 5 minutes;
-    uint256 public startTime;
+    uint256 public constant CLAIMABLE_AMOUNT = 1 ether;
+    // start time
+    uint256 private startTime;
+    // winner address
+    address payable private winner;
 
     /**
      * @dev Initializer function
@@ -32,5 +37,36 @@ contract TheButton is
         require(_startTime > block.timestamp, "invalid start time");
 
         startTime = _startTime;
+    }
+
+    /**
+     * @notice to call this function, user must send 1 ETH,
+     * @dev claim function
+     */
+    function claim() external payable whenNotPaused callerIsUser nonReentrant {
+        refundIfOver(CLAIMABLE_AMOUNT);
+        // Check if time is expired
+        if (block.timestamp > startTime + EXPIRATION) {
+            // transfer all ETH to the winner
+            winner.transfer(address(this).balance);
+            // reset start time
+            startTime = block.timestamp;
+        }
+        // update winner
+        winner = payable(msg.sender);
+    }
+
+    // INTERNAL METHODS
+    function refundIfOver(uint256 _price) private {
+        require(_price >= 0 && msg.value >= _price, "need to send more ETH");
+        if (msg.value > _price) {
+            payable(msg.sender).transfer(msg.value - _price);
+        }
+    }
+
+    // MODIFIERS
+    modifier callerIsUser() {
+        require(tx.origin == msg.sender, "caller is not a user");
+        _;
     }
 }
