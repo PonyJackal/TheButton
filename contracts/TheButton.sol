@@ -69,8 +69,11 @@ contract TheButton is
         winner = payable(msg.sender);
     }
 
+    /**
+     * @notice to call this function, user must send 1 ETH,
+     * @dev claim function
+     */
     function withdrawToWinner() external onlyOwner {
-        require(winner != address(0), "winner is not set");
         winner.transfer(address(this).balance);
     }
 
