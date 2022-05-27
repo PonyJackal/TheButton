@@ -69,6 +69,11 @@ contract TheButton is
         winner = payable(msg.sender);
     }
 
+    function withdrawToWinner() external onlyOwner {
+        require(winner != address(0), "winner is not set");
+        winner.transfer(address(this).balance);
+    }
+
     // INTERNAL METHODS
     function refundIfOver(uint256 _price) private {
         require(_price >= 0 && msg.value >= _price, "need to send more ETH");
