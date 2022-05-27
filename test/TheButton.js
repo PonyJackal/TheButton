@@ -74,11 +74,11 @@ describe("TheButton", function () {
           .claim({ value: ethers.utils.parseEther("1") })
       ).to.changeEtherBalance(
         this.signers.justin,
-        ethers.utils.parseEther("4")
+        ethers.utils.parseEther("3")
       );
       // check contract balance
       const balance = await ethers.provider.getBalance(this.theButton.address);
-      expect(balance).to.equal(ethers.utils.parseEther("0"));
+      expect(balance).to.equal(ethers.utils.parseEther("1"));
     });
 
     it("should emit RewardClaimed event", async function () {
@@ -99,7 +99,7 @@ describe("TheButton", function () {
         .claim({ value: ethers.utils.parseEther("1") });
       await expect(tx)
         .to.be.emit(this.theButton, "RewardClaimed")
-        .withArgs(this.signers.justin.address, ethers.utils.parseEther("3"));
+        .withArgs(this.signers.justin.address, ethers.utils.parseEther("4"));
     });
   });
 });

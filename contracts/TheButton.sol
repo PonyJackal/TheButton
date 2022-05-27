@@ -58,9 +58,9 @@ contract TheButton is
             // no need to revert if winner is not set yet
             // we just need to start the auction from there
             if (_winner != address(0)) {
-                // transfer all ETH to the winner
+                // transfer unclaimed amount ETH in previous round to the winner
                 uint256 balance = address(this).balance;
-                _winner.transfer(balance);
+                _winner.transfer(balance - CLAIMABLE_AMOUNT);
 
                 emit RewardClaimed(_winner, balance);
             }
